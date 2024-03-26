@@ -5,7 +5,13 @@ from bson import ObjectId
 from api.utils.exception_handler import exception_handler
 
 now = datetime.now()
-legal_proceedings = db.legal_proceedings
+
+
+def get_legal_proceedings_collection(db, mock_collection):
+    if mock_collection is None:
+        return db.legal_proceedings
+    else:
+        return mock_collection
 
 
 def read_legal_proceeding(
@@ -15,7 +21,10 @@ def read_legal_proceeding(
     order: str,
     search_field: str,
     search_value: str,
+    mock_collection=None,
 ):
+
+    legal_proceedings = get_legal_proceedings_collection(db, mock_collection)
     start_index = (page - 1) * page_size
     end_index = start_index + page_size
     search_filter = {}
@@ -43,7 +52,8 @@ def read_legal_proceeding(
     }
 
 
-def delete_process(process_id: str):
+def delete_process(process_id: str, mock_collection=None):
+    legal_proceedings = get_legal_proceedings_collection(db, mock_collection)
     object_id = ObjectId(str(process_id))
     existing_process = legal_proceedings.find_one({"_id": object_id})
     if existing_process:
@@ -57,7 +67,9 @@ def delete_process(process_id: str):
     }
 
 
-def delete_processes(processes_ids: List[str]):
+def delete_processes(processes_ids: List[str], mock_collection=None):
+    legal_proceedings = get_legal_proceedings_collection(db, mock_collection)
+
     if not processes_ids:
         raise exception_handler("422_NO_ID")
     object_ids = [ObjectId(process_id) for process_id in processes_ids]
@@ -66,6 +78,6 @@ def delete_processes(processes_ids: List[str]):
         raise exception_handler("404_NOT_FOUND")
 
     return {
-        "message": "Processs deleted",
+        "message": "Processes deleted",
         "deleted_count": deleted_count.deleted_count,
     }
