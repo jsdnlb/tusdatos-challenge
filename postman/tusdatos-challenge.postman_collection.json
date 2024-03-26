@@ -1,0 +1,368 @@
+{
+  "info": {
+    "_postman_id": "bf7c8e7b-d746-411c-ae39-a4fc9e719ddb",
+    "name": "Tusdatos challenge",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10884030"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Get token",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "username",
+                  "value": "jsdnlb",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "secret",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/token",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["api", "token"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get all users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "users", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get user with id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users/541535ec-25a1-41be-9087-79f6adcdacb4",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "users", "541535ec-25a1-41be-9087-79f6adcdacb4"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"user1\",\n  \"full_name\": \"Usuario de prueba\",\n  \"age\": 23,\n  \"role\":\"client\",\n  \"email\": \"user1@example.com\",\n  \"hashed_password\": \"na\",\n  \"disabled\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "users", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update user id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"fquinter\",\n  \"email\": \"Hola\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users/7646e75a-6ce3-492d-9ef8-7f1e8d318106",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "users", "7646e75a-6ce3-492d-9ef8-7f1e8d318106"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update specific field user id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"fquinter\",\n  \"email\": \"Hola\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users/7646e75a-6ce3-492d-9ef8-7f1e8d318106",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "users", "7646e75a-6ce3-492d-9ef8-7f1e8d318106"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete user with id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users/7646e75a-6ce3-492d-9ef8-7f1e8d318106",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "users", "7646e75a-6ce3-492d-9ef8-7f1e8d318106"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete multiple user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n    \"73aef1ec-433f-414e-bef7-6c12b82119f3\",\n    \"d7dfaaa8-fc8c-4ed2-b9ee-ea92cdb3f1c9\",\n    \"5f18f5ca-1692-4a4b-be81-69dc8a68cb8d\",\n    \"3d841146-750f-4a19-bb3a-85f5f8b809f4\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/users/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "users", ""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Legal Proceeding",
+      "item": [
+        {
+          "name": "Get all legal proceeding with pagination",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/legal_proceeding/?page_size=10&sort_by=id&page=1&order=asc",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "legal_proceeding", ""],
+              "query": [
+                {
+                  "key": "page_size",
+                  "value": "10"
+                },
+                {
+                  "key": "sort_by",
+                  "value": "id"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "order",
+                  "value": "asc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete process with id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/legal_proceeding/6602222d5a48ca0518a42451",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "legal_proceeding", "6602222d5a48ca0518a42451"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete multiple processes",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n    \"58a4daa2-7c73-4c86-9fd8-011fbcac6a1f\",\n    \"c42d58f4-940a-4092-b362-b9c752bfb01d\",\n    \"e8c53555-f8e8-4511-8c2b-c12f40254637\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/raffles/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "raffles", ""]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
